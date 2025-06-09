@@ -1,12 +1,14 @@
-
 export interface NewsItem {
   id: string;
   title: string;
   img: string;
+  thumbnail?: string;
   summary: string;
   content: string;
   date: string;
   category: string;
+  ctaText?: string;
+  ctaUrl?: string;
 }
 
 export interface StoreInfo {

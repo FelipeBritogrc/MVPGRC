@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -10,7 +9,7 @@ interface MobileMenuProps {
 
 const mainLinks = [
   { href: "/", label: "Início" },
-  { href: "/newsletter", label: "Notícias" },
+  { href: "/#noticias", label: "Notícias", isAnchor: true },
   { href: "/careers", label: "Trabalhe Conosco" },
 ];
 
@@ -28,7 +27,21 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onNavClick }) => {
     if (href === "/") {
       return location.pathname === "/";
     }
+    if (href.startsWith("/#")) {
+      return location.pathname === "/" && location.hash === href.substring(1);
+    }
     return location.pathname === href;
+  };
+
+  const handleLinkClick = (href: string, isAnchor?: boolean) => {
+    if (isAnchor && href.startsWith("/#")) {
+      const targetId = href.substring(2); // Remove "/#"
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+    onNavClick();
   };
 
   if (!isOpen) return null;
@@ -41,7 +54,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onNavClick }) => {
           <Link
             key={link.href}
             to={link.href}
-            onClick={onNavClick}
+            onClick={() => handleLinkClick(link.href, link.isAnchor)}
             className={cn(
               "block px-4 py-3 text-base font-medium transition-all duration-200",
               "text-white",

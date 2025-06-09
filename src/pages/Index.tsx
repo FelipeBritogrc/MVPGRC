@@ -1,11 +1,11 @@
-
 import { useEffect, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import HeroInstitutional from "@/components/HeroInstitutional";
 import ValueCardsRedesigned from "@/components/ValueCardsRedesigned";
-import NewsletterSectionRedesigned from "@/components/NewsletterSectionRedesigned";
+import NewsSection from "@/components/NewsSection";
 import TimelineCarousel from "@/components/TimelineCarousel";
-import BrandsSectionRedesigned from "@/components/BrandsSectionRedesigned";
+import BrandsSection from "@/components/BrandsSection";
+import StoresSection from "@/components/StoresSection";
 import CompanyNumbers from "@/components/CompanyNumbers";
 import Footer from "@/components/Footer";
 
@@ -56,13 +56,13 @@ const Index = () => {
           <ValueCardsRedesigned />
         </section>
 
-        {/* Últimas Notícias */}
+        {/* Notícias */}
         <section 
           ref={el => sectionsRef.current['noticias'] = el}
           id="noticias"
           className="relative"
         >
-          <NewsletterSectionRedesigned />
+          <NewsSection />
         </section>
 
         {/* Nossa Trajetória */}
@@ -80,7 +80,16 @@ const Index = () => {
           id="marcas" 
           className="relative"
         >
-          <BrandsSectionRedesigned />
+          <BrandsSection />
+        </section>
+
+        {/* Nossas Lojas */}
+        <section 
+          ref={el => sectionsRef.current['lojas'] = el}
+          id="lojas"
+          className="relative"
+        >
+          <StoresSection />
         </section>
 
         {/* Nossos Números */}
